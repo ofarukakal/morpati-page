@@ -7,7 +7,151 @@
 <meta name="description" content="Mor Pati Derneği: sokak hayvanları için sahiplendirme, bağış ve kurumsal iş birliği. Birlikte yaşatıyoruz.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+:root{
+  --navy:#1b2a4a;
+  --navy-2:#24365c;
+  --amber:#f59e0b;
+  --amber-dark:#d97706;
+  --amber-light:#fef3c7;
+  --cream:#fffbf3;
+  --white:#ffffff;
+  --text:#2b3446;
+  --muted:#5b667c;
+  --line:#eee4d0;
+  --green:#25d366;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--text);background:var(--cream);font-size:17px;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;border-radius:999px;padding:14px 26px;font-size:17px;border:none;cursor:pointer;transition:.2s;text-align:center}
+.btn-amber{background:var(--amber);color:var(--navy)}
+.btn-amber:hover{background:var(--amber-dark);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy-2)}
+.btn-outline{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.7)}
+.btn-outline:hover{background:#fff;color:var(--navy)}
+section{padding:56px 0}
+.section-title{font-size:clamp(26px,4vw,36px);font-weight:900;color:var(--navy);text-align:center;margin-bottom:8px}
+.section-sub{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 36px}
+
+/* Duyuru bandı */
+.announce{background:var(--navy);color:#fff;font-weight:700;font-size:15px;overflow:hidden;white-space:nowrap;padding:9px 0}
+.announce .track{display:inline-block;animation:marquee 22s linear infinite}
+.announce span{margin:0 32px}
+.announce b{color:var(--amber)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Header */
+header{background:var(--white);position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(27,42,74,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;color:var(--navy)}
+.logo img{width:42px;height:42px;border-radius:50%}
+.nav-links{display:none;gap:26px;font-weight:700;font-size:16px}
+.nav-links a:hover{color:var(--amber-dark)}
+.nav-cta{display:none}
+.hamburger{background:none;border:none;font-size:26px;color:var(--navy);cursor:pointer}
+.mobile-menu{display:none;flex-direction:column;background:var(--white);padding:12px 20px 20px;gap:14px;font-weight:700;border-top:1px solid var(--line)}
+.mobile-menu.open{display:flex}
+@media(min-width:900px){
+  .nav-links{display:flex}.nav-cta{display:inline-flex}.hamburger{display:none}
+}
+
+/* Hero */
+.hero{position:relative;color:#fff;padding:0}
+.hero-bg{position:absolute;inset:0;background:url('https://morpati.org/wp-content/uploads/2024/08/mbr-1920x1280-1.webp') center/cover no-repeat}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,42,74,.78) 0%,rgba(27,42,74,.62) 60%,rgba(27,42,74,.85) 100%)}
+.hero-inner{position:relative;padding:84px 0 72px;text-align:center}
+.hero h1{font-size:clamp(34px,6vw,56px);font-weight:900;line-height:1.15;margin-bottom:14px}
+.hero h1 em{color:var(--amber);font-style:normal}
+.hero p{font-size:clamp(17px,2.5vw,21px);max-width:620px;margin:0 auto 30px;opacity:.95}
+.hero-actions{display:flex;flex-direction:column;gap:12px;max-width:340px;margin:0 auto}
+@media(min-width:700px){.hero-actions{flex-direction:row;max-width:none;justify-content:center}}
+.hero-actions .btn{font-size:18px;padding:16px 30px}
+
+/* Etki sayaçları */
+.impact{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;text-align:center}
+@media(min-width:800px){.impact-grid{grid-template-columns:repeat(4,1fr)}}
+.impact-num{font-size:clamp(34px,5vw,48px);font-weight:900;color:var(--amber-dark)}
+.impact-label{font-weight:700;color:var(--navy)}
+
+/* Bağış */
+.donate{background:var(--navy);color:#fff}
+.donate .section-title{color:#fff}
+.donate .section-sub{color:#cdd6e6}
+.iban-card{background:var(--white);color:var(--text);border-radius:var(--radius);padding:28px;max-width:640px;margin:0 auto;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.iban-card h3{color:var(--navy);font-size:20px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.iban-row{background:var(--amber-light);border:2px dashed var(--amber);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;margin:14px 0}
+@media(min-width:600px){.iban-row{flex-direction:row;align-items:center;justify-content:space-between}}
+.iban-number{font-size:clamp(17px,2.6vw,21px);font-weight:900;letter-spacing:.5px;color:var(--navy);word-break:break-all}
+.copy-btn{background:var(--navy);color:#fff;border:none;border-radius:999px;padding:13px 24px;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.copy-btn:hover{background:var(--navy-2)}
+.copy-btn.copied{background:#16a34a}
+.iban-meta{font-size:15px;color:var(--muted);line-height:1.8}
+.iban-meta b{color:var(--text)}
+.donate-alt{display:flex;flex-direction:column;gap:12px;max-width:640px;margin:24px auto 0}
+@media(min-width:600px){.donate-alt{flex-direction:row}}
+.donate-alt a{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:12px;padding:16px;text-align:center;font-weight:800;transition:.2s}
+.donate-alt a:hover{background:rgba(255,255,255,.2)}
+.donate-alt small{display:block;font-weight:600;opacity:.8;margin-top:4px}
+
+/* Kart ızgaraları */
+.cards{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:640px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.cards.c3{grid-template-columns:repeat(3,1fr)}.cards.c5{grid-template-columns:repeat(5,1fr)}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 4px 18px rgba(27,42,74,.06);display:flex;flex-direction:column}
+.card .emoji{font-size:34px;margin-bottom:10px}
+.card h3{color:var(--navy);font-size:19px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15.5px;flex:1}
+.card a{margin-top:14px;font-weight:800;color:var(--amber-dark)}
+.card a:hover{text-decoration:underline}
+
+/* Kurumsal */
+.corp{background:linear-gradient(135deg,#fff7e6,#fffbf3)}
+.corp-box{background:var(--navy);color:#fff;border-radius:var(--radius);padding:32px;margin-top:32px;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+@media(min-width:800px){.corp-box{flex-direction:row;align-items:center;justify-content:space-between}}
+.corp-box h3{font-size:22px}
+.corp-box .btns{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Instagram */
+.insta{background:var(--white);border-top:1px solid var(--line)}
+.insta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:760px;margin:0 auto 24px}
+@media(min-width:640px){.insta-grid{grid-template-columns:repeat(4,1fr)}}
+.insta-grid img{aspect-ratio:1;object-fit:cover;border-radius:12px;width:100%}
+.insta-center{text-align:center}
+
+/* Footer */
+footer{background:var(--navy);color:#c9d3e5;font-size:15px}
+.footer-grid{display:grid;gap:32px;padding:52px 0 36px;grid-template-columns:1fr}
+@media(min-width:800px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+footer h4{color:#fff;font-size:16px;margin-bottom:14px}
+footer li{list-style:none;margin-bottom:9px}
+footer a:hover{color:var(--amber)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:18px 0;display:flex;flex-direction:column;gap:8px;align-items:center;font-size:13.5px;text-align:center}
+.badge{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;font-size:13px}
+
+/* Mobil: kartları kompaktlaştır */
+@media(max-width:639px){
+  section{padding:40px 0}
+  .section-sub{margin-bottom:24px}
+  .cards{gap:12px}
+  .card{padding:16px 18px;border-radius:12px}
+  .card .emoji{display:inline-block;font-size:22px;margin:0 10px 0 0;vertical-align:-3px}
+  .card h3{display:inline;font-size:17px}
+  .card p{margin-top:8px;font-size:14.5px;line-height:1.5}
+  .card a{margin-top:8px;font-size:15px}
+}
+
+/* WhatsApp float */
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--green);width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+.placeholder{outline:2px dashed #e11d48;outline-offset:2px;position:relative}
+</style>
 </head>
 <body>
 
@@ -30,10 +174,10 @@
       Mor Pati Derneği
     </a>
     <nav class="nav-links" aria-label="Ana menü">
-      <a href="sahiplendirme.html">Sahiplen</a>
-      <a href="gonullu.html">Gönüllü Ol</a>
-      <a href="kurumsal.html">Kurumsal İş Birliği</a>
-      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="#sahiplen">Sahiplen</a>
+      <a href="#gonullu">Gönüllü Ol</a>
+      <a href="#kurumsal">Kurumsal İş Birliği</a>
+      <a href="#hakkimizda">Hakkımızda</a>
     </nav>
     <a href="#bagis" class="btn btn-amber nav-cta">❤️ Bağış Yap</a>
     <button class="hamburger" aria-label="Menüyü aç" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
@@ -43,7 +187,7 @@
     <a href="#bagis">❤️ Bağış Yap</a>
     <a href="#gonullu">🙌 Gönüllü Ol</a>
     <a href="#kurumsal">🤝 Kurumsal İş Birliği</a>
-    <a href="hakkimizda.html">Hakkımızda</a>
+    <a href="#hakkimizda">Hakkımızda</a>
   </nav>
 </header>
 
@@ -246,10 +390,10 @@
     <div>
       <h4>Hızlı Erişim</h4>
       <ul>
-        <li><a href="sahiplendirme.html">Sahiplen</a></li>
+        <li><a href="#sahiplen">Sahiplen</a></li>
         <li><a href="#bagis">Bağış Yap</a></li>
-        <li><a href="gonullu.html">Gönüllü Ol</a></li>
-        <li><a href="kurumsal.html">Kurumsal İş Birliği</a></li>
+        <li><a href="#gonullu">Gönüllü Ol</a></li>
+        <li><a href="#kurumsal">Kurumsal İş Birliği</a></li>
         <li><a href="https://www.instagram.com/morpatidernegi" target="_blank" rel="noopener">Instagram</a></li>
         <li><a class="placeholder" href="#">Facebook (link eklenecek)</a></li>
       </ul>
