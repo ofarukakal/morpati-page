@@ -137,9 +137,6 @@ footer a:hover{color:var(--amber)}
   .card a{margin-top:8px;font-size:15px}
 }
 
-/* WhatsApp float */
-.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--green);width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.3)}
-.wa-float svg{width:32px;height:32px;fill:#fff}
 .placeholder{outline:2px dashed #e11d48;outline-offset:2px;position:relative}
 
 /* ==== İç sayfa stilleri ==== */
